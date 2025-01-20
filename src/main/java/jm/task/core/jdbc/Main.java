@@ -1,17 +1,18 @@
 package jm.task.core.jdbc;
+
 import jm.task.core.jdbc.model.User;
 import jm.task.core.jdbc.service.UserService;
 import jm.task.core.jdbc.service.UserServiceImpl;
 import jm.task.core.jdbc.util.Util;
 import org.hibernate.Session;
+
 import java.sql.*;
 import java.util.logging.Logger;
-import static java.util.logging.Logger.getLogger;
 
+import static java.util.logging.Logger.getLogger;
 
 public class Main {
     private static final Logger LOG = getLogger(Main.class.getName());
-
 
     public static void main(String[] args) throws SQLException {
         Session session = Util.getSessionFactory().openSession();
@@ -26,9 +27,7 @@ public class Main {
         userService.saveUser("Art3", "Gin3", (byte) 35);
         userService.saveUser("Art4", "Gin4", (byte) 35);
         userService.saveUser("Art5", "Gin5", (byte) 38);
-
         System.out.println("All users created and added to the database 'mydb_jdbc' to the Table 'user' ");
-
         for (User body : userService.getAllUsers()) {
             System.out.println(body.toString());
         }

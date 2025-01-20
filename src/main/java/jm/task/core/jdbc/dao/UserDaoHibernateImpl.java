@@ -4,13 +4,14 @@ import jm.task.core.jdbc.model.User;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
+
 import java.util.List;
+
 import static jm.task.core.jdbc.util.Util.getSessionFactory;
 
 public class UserDaoHibernateImpl implements UserDao {
     public UserDaoHibernateImpl() {
     }
-
 
     @Override
     public void createUsersTable() {
