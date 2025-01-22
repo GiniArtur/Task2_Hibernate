@@ -18,13 +18,13 @@ public class Util {
     private static final String URL = "jdbc:mysql://localhost:3306/mydb_jdbc";
     private static final String USER = "root";
     private static final String PASSWORD = "4544120";
+    private static SessionFactory sessionFactory = null;
 
     public static Connection getConnection() {
         Connection connection = null;
         try {
             Class.forName(DB_Driver);
             connection = DriverManager.getConnection(URL, USER, PASSWORD);
-
         } catch (ClassNotFoundException e) {
             System.out.println("Connected to database failed");
             throw new RuntimeException(e);
@@ -36,8 +36,6 @@ public class Util {
     }
 
     // Hibernate
-    private static SessionFactory sessionFactory;
-
     public static SessionFactory getSessionFactory() {
         if (sessionFactory == null) {
             try {
@@ -62,6 +60,12 @@ public class Util {
             }
         }
         return sessionFactory;
+    }
+
+    public static void closeConnection() {
+        if (sessionFactory != null) {
+            sessionFactory.close();
+        }
     }
 }
 
